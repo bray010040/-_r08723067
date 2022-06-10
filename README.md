@@ -1,4 +1,6 @@
-# r08723067
+# Python K棒型態偵測器
 
-程式作業在金融科技課程資料夾
-專案作業影片連結：https://www.youtube.com/watch?v=14y3weZ-T_U
+此Function能在OHLC的資料中  
+定義自己希望之型態樣式，例如晨星、墓碑、多頭反噬等  
+並能將結果與統計回傳，繪圖出來  
+可以應用在撰寫Rule-Based策略開發上  
