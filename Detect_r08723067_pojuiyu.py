@@ -72,7 +72,7 @@ class Detect(object):
             return False
 
 
-    # def shootingStar(self, df):
+    def shootingStar(self, df):
     #     # 1. 前9根趨勢為正
     #     # 2. 第9根上漲
     #     # 3. 第9根長度在前50根中PR值大於等於65
@@ -80,41 +80,41 @@ class Detect(object):
     #     # 5. 第10根開盤或收盤價(較小者)大於等於第9根中央
     #     # 6. 第10根下影線長度在前50根中PR值小於25
     #     # 7. 第10根上影線長度在前50根中PR值大於65
-    #     cond1 = (df['trend9'].iloc[-2] > 0)
-    #     cond2 = (df['direction'].iloc[-2] > 0)
-    #     cond3 = (df['realbody_per'].iloc[-2] >= 65)
-    #     cond4 = (df['ushadow_width'].iloc[-1] >= 2 * abs(df['realbody'].iloc[-1]))
-    #     cond5 = (min(df['open'].iloc[-1], df['close'].iloc[-1]) >= (df['open'].iloc[-2] + df['realbody'].iloc[-2] * (1/2)))
-    #     cond6 = (df['lshadow_per'].iloc[-1] <= 25)
-    #     cond7 = (df['ushadow_per'].iloc[-1] >= 65)
-    #     if cond1 and cond2 and cond3 and cond4 and cond5 and cond6 and cond7:
-    #         return True
-    #     else:
-    #         return False
+         cond1 = (df['trend9'].iloc[-2] > 0)
+         cond2 = (df['direction'].iloc[-2] > 0)
+         cond3 = (df['realbody_per'].iloc[-2] >= 65)
+         cond4 = (df['ushadow_width'].iloc[-1] >= 2 * abs(df['realbody'].iloc[-1]))
+         cond5 = (min(df['open'].iloc[-1], df['close'].iloc[-1]) >= (df['open'].iloc[-2] + df['realbody'].iloc[-2] * (1/2)))
+         cond6 = (df['lshadow_per'].iloc[-1] <= 25)
+         cond7 = (df['ushadow_per'].iloc[-1] >= 65)
+         if cond1 and cond2 and cond3 and cond4 and cond5 and cond6 and cond7:
+             return True
+         else:
+             return False
     
 
-    # def invertHammer(self, df):
-    #     # 1. 前9根趨勢為負
-    #     # 2. 第9根下跌
-    #     # 3. 第9根長度在前50根中PR值大於等於65
-    #     # 4. 第10根上影線長度大於其body長度的兩倍
-    #     # 5. 第10根開盤或收盤價(較大者)小於等於第9根中央
-    #     # 6. 第10根下影線長度在前50根中PR值小於25
-    #     # 7. 第10根上影線長度在前50根中PR值大於65
-    #     cond1 = (df['trend9'].iloc[-2] < 0)
-    #     cond2 = (df['direction'].iloc[-2] < 0)
-    #     cond3 = (df['realbody_per'].iloc[-2] >= 65)
-    #     cond4 = (df['ushadow_width'].iloc[-1] >= 2 * abs(df['realbody'].iloc[-1]))
-    #     cond5 = (max(df['open'].iloc[-1], df['close'].iloc[-1]) <= (df['open'].iloc[-2] + df['realbody'].iloc[-2] * (1/2)))
-    #     cond6 = (df['lshadow_per'].iloc[-1] <= 25)
-    #     cond7 = (df['ushadow_per'].iloc[-1] >= 65)
-    #     if cond1 and cond2 and cond3 and cond4 and cond5 and cond6 and cond7:
-    #         return True
-    #     else:
-    #         return False
+    def invertHammer(self, df):
+         # 1. 前9根趨勢為負
+         # 2. 第9根下跌
+         # 3. 第9根長度在前50根中PR值大於等於65
+         # 4. 第10根上影線長度大於其body長度的兩倍
+         # 5. 第10根開盤或收盤價(較大者)小於等於第9根中央
+         # 6. 第10根下影線長度在前50根中PR值小於25
+         # 7. 第10根上影線長度在前50根中PR值大於65
+         cond1 = (df['trend9'].iloc[-2] < 0)
+         cond2 = (df['direction'].iloc[-2] < 0)
+         cond3 = (df['realbody_per'].iloc[-2] >= 65)
+         cond4 = (df['ushadow_width'].iloc[-1] >= 2 * abs(df['realbody'].iloc[-1]))
+         cond5 = (max(df['open'].iloc[-1], df['close'].iloc[-1]) <= (df['open'].iloc[-2] + df['realbody'].iloc[-2] * (1/2)))
+         cond6 = (df['lshadow_per'].iloc[-1] <= 25)
+         cond7 = (df['ushadow_per'].iloc[-1] >= 65)
+         if cond1 and cond2 and cond3 and cond4 and cond5 and cond6 and cond7:
+             return True
+         else:
+             return False
 
 
-    # def bearishHarami(self, df):
+    def bearishHarami(self, df):
     #     # 1. 前8根趨勢為正
     #     # 2. 第9根為上漲
     #     # 3. 第10根下跌
@@ -123,40 +123,40 @@ class Detect(object):
     #     # 6. 第10根收盤價大於第9根開盤價
     #     # 7. 第10根長度在前50根中PR值大於等於65
     #     # 8. 第10根收盤價小於等於第9根中央
-    #     cond1 = (df['trend8'].iloc[-3] > 0)
-    #     cond2 = (df['direction'].iloc[-2] > 0)
-    #     cond3 = (df['direction'].iloc[-1] < 0)
-    #     cond4 = (df['realbody_per'].iloc[-2] >= 65)
-    #     cond5 = (df['open'].iloc[-1] < df['close'].iloc[-2])
-    #     cond6 = (df['close'].iloc[-1] > df['open'].iloc[-2])
-    #     cond7 = (df['realbody_per'].iloc[-1] >= 65)
-    #     cond8 = (df['close'].iloc[-1] <= (df['open'].iloc[-2] + df['realbody'].iloc[-2] * (1/2)))
-    #     if cond1 and cond2 and cond3 and cond4 and cond5 and cond6 and cond7 and cond8:
-    #         return True
-    #     else:
-    #         return False
+         cond1 = (df['trend8'].iloc[-3] > 0)
+         cond2 = (df['direction'].iloc[-2] > 0)
+         cond3 = (df['direction'].iloc[-1] < 0)
+         cond4 = (df['realbody_per'].iloc[-2] >= 65)
+         cond5 = (df['open'].iloc[-1] < df['close'].iloc[-2])
+         cond6 = (df['close'].iloc[-1] > df['open'].iloc[-2])
+         cond7 = (df['realbody_per'].iloc[-1] >= 65)
+         cond8 = (df['close'].iloc[-1] <= (df['open'].iloc[-2] + df['realbody'].iloc[-2] * (1/2)))
+         if cond1 and cond2 and cond3 and cond4 and cond5 and cond6 and cond7 and cond8:
+             return True
+         else:
+             return False
 
 
-    # def bearishEngulfing(self, df):
-    #     # 1. 前8根趨勢為正
-    #     # 2. 第9根為上漲
-    #     # 3. 第10根下跌
-    #     # 4. 第9根長度在前50根中PR值大於等於65
-    #     # 5. 第10根開盤價大於第9根收盤價
-    #     # 6. 第10根收盤價小於第9根開盤價
-    #     cond1 = (df['trend8'].iloc[-3] > 0)
-    #     cond2 = (df['direction'].iloc[-2] > 0)
-    #     cond3 = (df['direction'].iloc[-1] < 0)
-    #     cond4 = (df['realbody_per'].iloc[-2] >= 65)
-    #     cond5 = (df['open'].iloc[-1] > df['close'].iloc[-2])
-    #     cond6 = (df['close'].iloc[-1] < df['open'].iloc[-2])
-    #     if cond1 and cond2 and cond3 and cond4 and cond5 and cond6:
-    #         return True
-    #     else:
-    #         return False
+    def bearishEngulfing(self, df):
+         # 1. 前8根趨勢為正
+         # 2. 第9根為上漲
+         # 3. 第10根下跌
+         # 4. 第9根長度在前50根中PR值大於等於65
+         # 5. 第10根開盤價大於第9根收盤價
+         # 6. 第10根收盤價小於第9根開盤價
+         cond1 = (df['trend8'].iloc[-3] > 0)
+         cond2 = (df['direction'].iloc[-2] > 0)
+         cond3 = (df['direction'].iloc[-1] < 0)
+         cond4 = (df['realbody_per'].iloc[-2] >= 65)
+         cond5 = (df['open'].iloc[-1] > df['close'].iloc[-2])
+         cond6 = (df['close'].iloc[-1] < df['open'].iloc[-2])
+         if cond1 and cond2 and cond3 and cond4 and cond5 and cond6:
+             return True
+         else:
+             return False
     
 
-    # def bullishHarami(self, df):
+    def bullishHarami(self, df):
     #     # 1. 前8根趨勢為負
     #     # 2. 第9根為下跌
     #     # 3. 第10根上漲
@@ -165,37 +165,37 @@ class Detect(object):
     #     # 6. 第10根收盤價小於第9根開盤價
     #     # 7. 第10根長度在前50根中PR值大於等於65
     #     # 8. 第10根收盤價大於等於第9根中央
-    #     cond1 = (df['trend8'].iloc[-3] < 0)
-    #     cond2 = (df['direction'].iloc[-2] < 0)
-    #     cond3 = (df['direction'].iloc[-1] > 0)
-    #     cond4 = (df['realbody_per'].iloc[-2] >= 65)
-    #     cond5 = (df['open'].iloc[-1] > df['close'].iloc[-2])
-    #     cond6 = (df['close'].iloc[-1] < df['open'].iloc[-2])
-    #     cond7 = (df['realbody_per'].iloc[-1] >= 65)
-    #     cond8 = (df['close'].iloc[-1] >= (df['open'].iloc[-2] + df['realbody'].iloc[-2] * (1/2)))
-    #     if cond1 and cond2 and cond3 and cond4 and cond5 and cond6 and cond7 and cond8:
-    #         return True
-    #     else:
-    #         return False
+         cond1 = (df['trend8'].iloc[-3] < 0)
+         cond2 = (df['direction'].iloc[-2] < 0)
+         cond3 = (df['direction'].iloc[-1] > 0)
+         cond4 = (df['realbody_per'].iloc[-2] >= 65)
+         cond5 = (df['open'].iloc[-1] > df['close'].iloc[-2])
+         cond6 = (df['close'].iloc[-1] < df['open'].iloc[-2])
+         cond7 = (df['realbody_per'].iloc[-1] >= 65)
+         cond8 = (df['close'].iloc[-1] >= (df['open'].iloc[-2] + df['realbody'].iloc[-2] * (1/2)))
+         if cond1 and cond2 and cond3 and cond4 and cond5 and cond6 and cond7 and cond8:
+             return True
+         else:
+             return False
 
 
-    # def bullishEngulfing(self, df):
+    def bullishEngulfing(self, df):
     #     # 1. 前8根趨勢為負
     #     # 2. 第9根為下跌
     #     # 3. 第10根上漲
     #     # 4. 第9根長度在前50根中PR值大於等於65
     #     # 5. 第10根開盤價小於第9根收盤價
     #     # 6. 第10根收盤價大於第9根開盤價
-    #     cond1 = (df['trend8'].iloc[-3] < 0)
-    #     cond2 = (df['direction'].iloc[-2] < 0)
-    #     cond3 = (df['direction'].iloc[-1] > 0)
-    #     cond4 = (df['realbody_per'].iloc[-2] >= 65)
-    #     cond5 = (df['open'].iloc[-1] < df['close'].iloc[-2])
-    #     cond6 = (df['close'].iloc[-1] > df['open'].iloc[-2])
-    #     if cond1 and cond2 and cond3 and cond4 and cond5 and cond6:
-    #         return True
-    #     else:
-    #         return False   
+         cond1 = (df['trend8'].iloc[-3] < 0)
+         cond2 = (df['direction'].iloc[-2] < 0)
+         cond3 = (df['direction'].iloc[-1] > 0)
+         cond4 = (df['realbody_per'].iloc[-2] >= 65)
+         cond5 = (df['open'].iloc[-1] < df['close'].iloc[-2])
+         cond6 = (df['close'].iloc[-1] > df['open'].iloc[-2])
+         if cond1 and cond2 and cond3 and cond4 and cond5 and cond6:
+             return True
+         else:
+             return False   
 
     def BigReverseV(self,df):
         #1.前9根斜率負
@@ -307,9 +307,9 @@ class Detect(object):
         print('MorningStar: {}'.format(self.data.loc[self.data['MorningStar'] == 1, 'MorningStar'].shape[0]))
         print('BigReverseV: {}'.format(self.data.loc[self.data['BigReverseV'] == 1, 'BigReverseV'].shape[0]))
         print('BigCrash: {}'.format(self.data.loc[self.data['BigCrash'] == 1, 'BigCrash'].shape[0]))
-        # print('ShootingStar: {}'.format(self.data.loc[self.data['ShootingStar'] == 1, 'ShootingStar'].shape[0]))
-        # print('InvertHammer: {}'.format(self.data.loc[self.data['InvertHammer'] == 1, 'InvertHammer'].shape[0]))
-        # print('BearishHarami: {}'.format(self.data.loc[self.data['BearishHarami'] == 1, 'BearishHarami'].shape[0]))
-        # print('BearishEngulfing: {}'.format(self.data.loc[self.data['BearishEngulfing'] == 1, 'BearishEngulfing'].shape[0]))        
-        # print('BullishHarami: {}'.format(self.data.loc[self.data['BullishHarami'] == 1, 'BullishHarami'].shape[0]))
-        # print('BullishEngulfing: {}'.format(self.data.loc[self.data['BullishEngulfing'] == 1, 'BullishEngulfing'].shape[0]))
+        print('ShootingStar: {}'.format(self.data.loc[self.data['ShootingStar'] == 1, 'ShootingStar'].shape[0]))
+        print('InvertHammer: {}'.format(self.data.loc[self.data['InvertHammer'] == 1, 'InvertHammer'].shape[0]))
+        print('BearishHarami: {}'.format(self.data.loc[self.data['BearishHarami'] == 1, 'BearishHarami'].shape[0]))
+        print('BearishEngulfing: {}'.format(self.data.loc[self.data['BearishEngulfing'] == 1, 'BearishEngulfing'].shape[0]))        
+        print('BullishHarami: {}'.format(self.data.loc[self.data['BullishHarami'] == 1, 'BullishHarami'].shape[0]))
+        print('BullishEngulfing: {}'.format(self.data.loc[self.data['BullishEngulfing'] == 1, 'BullishEngulfing'].shape[0]))
